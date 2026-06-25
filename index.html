@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Learningz | Kareerz</title>
+<link rel="icon" type="image/png" href="kareerz logo (1).png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg:        #F6F0E6;
+    --heading:   #0F2D33;
+    --accent:    #E39A24;
+    --body:      #4F5E63;
+    --nav:       #39464A;
+    --card:      #FBFAF8;
+    --border:    #DDD5C9;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--body);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* subtle paper texture via noise-free grain using radial gradients */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(15,45,51,0.04), transparent 40%),
+      radial-gradient(circle at 88% 92%, rgba(227,154,36,0.06), transparent 45%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- Header ---------- */
+
+  header{
+    padding:28px 0 0;
+  }
+
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+    padding-bottom:22px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.25rem;
+    color:var(--heading);
+    letter-spacing:-0.01em;
+  }
+
+  .brand-mark{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:var(--heading);
+    position:relative;
+    flex-shrink:0;
+  }
+  .brand-mark::after{
+    content:"";
+    position:absolute;
+    inset:7px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  .brand small{
+    display:block;
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-top:1px;
+  }
+
+  .site-link{
+    font-size:0.85rem;
+    font-weight:500;
+    color:var(--nav);
+    border:1px solid var(--border);
+    padding:8px 16px;
+    border-radius:999px;
+    background:var(--card);
+    transition:border-color .2s ease, color .2s ease;
+    white-space:nowrap;
+  }
+  .site-link:hover{
+    border-color:var(--accent);
+    color:var(--heading);
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding:64px 0 48px;
+    text-align:center;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:18px;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:"";
+    width:18px;
+    height:1px;
+    background:var(--accent);
+  }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    color:var(--heading);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    max-width:680px;
+    margin:0 auto 18px;
+  }
+
+  h1 em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:500;
+  }
+
+  .hero p{
+    max-width:480px;
+    margin:0 auto;
+    font-size:1.02rem;
+    line-height:1.6;
+    color:var(--body);
+  }
+
+  /* ---------- Sessions ---------- */
+
+  .sessions{
+    padding:8px 0 64px;
+  }
+
+  .sessions-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:24px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:14px;
+  }
+
+  .sessions-label h2{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--heading);
+    letter-spacing:0.01em;
+  }
+
+  .sessions-label span{
+    font-size:0.78rem;
+    color:var(--body);
+    opacity:0.75;
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:34px 30px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 40px -20px rgba(15,45,51,0.25);
+    border-color:#cfc4b2;
+  }
+
+  .card-icon{
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(15,45,51,0.05);
+  }
+
+  .card-icon svg{ width:22px; height:22px; }
+
+  .card-tag{
+    font-size:0.68rem;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-weight:600;
+    color:var(--heading);
+    line-height:1.25;
+  }
+
+  .card p{
+    font-size:0.92rem;
+    line-height:1.55;
+    color:var(--body);
+    flex-grow:1;
+  }
+
+  .card-meta{
+    display:flex;
+    gap:14px;
+    font-size:0.78rem;
+    color:var(--nav);
+    opacity:0.8;
+    margin-top:-4px;
+  }
+  .card-meta span{ display:flex; align-items:center; gap:5px; }
+  .card-meta svg{ width:13px; height:13px; flex-shrink:0; }
+
+  .card-btn{
+    margin-top:6px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:var(--heading);
+    color:var(--card);
+    font-size:0.88rem;
+    font-weight:600;
+    padding:13px 0;
+    border-radius:10px;
+    transition:background .2s ease, gap .2s ease;
+  }
+
+  .card-btn:hover{
+    background:var(--accent);
+    gap:11px;
+  }
+
+  .card-btn svg{ width:15px; height:15px; transition:transform .2s ease; }
+  .card-btn:hover svg{ transform:translateX(2px); }
+
+  /* differentiate the two cards subtly via top rule color */
+  .card.masterclass{ border-top:3px solid var(--heading); }
+  .card.wellness{ border-top:3px solid var(--accent); }
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    border-top:1px solid var(--border);
+    padding:26px 0 36px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:0.78rem;
+    color:var(--body);
+    opacity:0.85;
+  }
+
+  footer a{
+    color:var(--nav);
+    font-weight:500;
+  }
+  footer a:hover{ color:var(--heading); }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 720px){
+    .wrap{ padding:0 20px; }
+    .card-grid{ grid-template-columns:1fr; }
+    .hero{ padding:48px 0 36px; }
+    h1{ font-size:clamp(1.8rem, 8vw, 2.4rem); }
+    .nav-row{ padding-bottom:18px; }
+    footer{ flex-direction:column; gap:8px; text-align:center; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="nav-row">
+      <div class="brand">
+  <img src="kareerz logo.png" alt="Kareerz Logo" style="height:50px;">
+  <span>
+
+       K-Learningz
+          <small>Learning Hub by Kareerz</small>
+        </span>
+      </div>
+      <a class="site-link" href="https://www.kareerz.co.in" target="_blank" rel="noopener">Visit Kareerz.co.in →</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Learning Resources</div>
+    <h1>Learn. Grow.<br>Build your <em>future</em>.</h1>
+    <p>Explore curated learning resources designed to support career growth, personal development, and lifelong learning.</p>
+
+<p style="margin-top:18px;font-size:0.9rem;color:#4F5E63;">
+Powered by Kareerz • Career Guidance • Skill Development • Mental Wellness
+</p>
+  </section>
+
+  <section class="sessions">
+    <div class="sessions-label">
+      <h2>learning library</h2>
+      <span>3 learning resources</span>
+    </div>
+    <div class="card-grid">
+   <!-- Masterclass Card -->
+      <div class="card masterclass">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0F2D33" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polygon points="12 7 14.5 12 12 17 9.5 12" fill="#0F2D33" stroke="none"></polygon>
+          </svg>
+        </div>
+        <span class="card-tag">Masterclass</span>
+        <h3>Career Readiness Masterclass</h3>
+        <p>Comprehensive career guidance for students and graduates covering higher education, career planning, employability skills, resume building, and interview preparation.</p>
+        <div class="card-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+            Self-paced slides
+          </span>
+        </div>
+        <a class="card-btn"
+   href="https://drive.google.com/file/d/1GpdNbGPQDqRCfGGtZXKqmLrszVS8v38r/view?usp=sharing"
+   target="_blank"
+   rel="noopener">
+          Open Resources
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Mental Health Card -->
+      <div class="card wellness">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E39A24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21c-5-3.5-8-7-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4-3 7.5-8 11-.6.4-1.4.4-2 0z"></path>
+          </svg>
+        </div>
+        <span class="card-tag">Mental Health</span>
+        <h3>Holistic Mental Health Session</h3>
+        <p>A practical guide to mental well-being, emotional resilience, stress management, self-care, and seeking support while navigating personal and professional challenges.</p>
+        <div class="card-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+            Self-paced slides
+          </span>
+        </div>
+        <a class="card-btn"
+   href="https://drive.google.com/file/d/1RsYNon8BwtKVmj-D9_1oC81O6sFqJ3A_/view?usp=sharing"
+   target="_blank"
+   rel="noopener">
+  Open Resources
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14M13 6l6 6-6 6"/>
+  </svg>
+</a>
+       
+      </div>
+<!-- Claude AI Workshop -->
+<div class="card masterclass">
+  <div class="card-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0F2D33" stroke-width="1.6">
+      <path d="M12 2v20"></path>
+      <path d="M2 12h20"></path>
+    </svg>
+  </div>
+
+  <span class="card-tag">AI Workshop</span>
+
+  <h3>Claude AI Workshop for free</h3>
+
+  <p>Learn how to leverage Claude AI for career growth, content creation, research, resume building, interview preparation, prompt engineering, and productivity workflows.</p>
+
+  <div class="card-meta">
+    <span>Workshop Slides</span>
+  </div>
+
+  <a class="card-btn"
+     href="https://drive.google.com/file/d/1YUavRd3iaT5Uxx4UpzfdV_FRwsqFQynM/view?usp=sharing"
+     target="_blank"
+     rel="noopener">
+    Open Resources
+  </a>
+</div>
+
+<div class="card masterclass">
+
+  <div class="card-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0F2D33" stroke-width="1.6">
+      <path d="M6 4h12v16H6z"></path>
+      <path d="M9 8h6"></path>
+      <path d="M9 12h6"></path>
+      <path d="M9 16h4"></path>
+    </svg>
+  </div>
+
+  <span class="card-tag">Coming Soon</span>
+
+  <h3>Resume & Interview Toolkit</h3>
+
+  <p>Professional resume templates, interview preparation guides, HR insights, and job search resources to help learners become industry-ready.</p>
+
+  <div class="card-meta">
+    <span>Launching Soon</span>
+  </div>
+
+  <a class="card-btn" href="#">
+    Coming Soon
+  </a>
+
+</div>
+
+ </section>
+
+  <footer>
+    <span>2026 © Kareerz — All rights reserved.</span>
+    <a href="https://www.kareerz.co.in" target="_blank" rel="noopener">www.kareerz.co.in</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
